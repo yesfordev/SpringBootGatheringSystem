@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class SearchRes {
 
-    private StatisticSearch statisticSearch;
+    private StatisticSearch StatisticSearch;
 }

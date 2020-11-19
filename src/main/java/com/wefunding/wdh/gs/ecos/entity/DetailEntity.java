@@ -11,15 +11,14 @@ public class DetailEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "detail_id")
     private Integer id;
-
-    private Integer detailId;
 
     private Integer masterId;
 
-    private String itemListId;
+    private Integer itemListId;
 
     private String grpCode;
 
-    private Integer flag;
+    private String flag;
 }

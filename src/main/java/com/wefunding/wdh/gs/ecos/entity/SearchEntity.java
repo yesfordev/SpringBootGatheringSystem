@@ -1,37 +1,50 @@
 package com.wefunding.wdh.gs.ecos.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "statistic_search_test", schema = "ecos")
+@Table(name = "statistic_search", schema = "ecos")
 public class SearchEntity implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String STAT_CODE;
+    private String statCode;
 
-    private String STAT_NAME;
+    private String statName;
 
-    private String ITEM_CODE1;
+    private String itemCode1;
 
-    private String ITEM_NAME1;
+    private String itemName1;
 
-    private String ITEM_CODE2;
+    private String itemCode2;
 
-    private String ITEM_NAME2;
+    private String itemName2;
 
-    private String ITEM_CODE3;
+    private String itemCode3;
 
-    private String ITEM_NAME3;
+    private String itemName3;
 
-    private String UNIT_NAME;
+    private String unitName;
 
-    private String TIME;
+    private String time;
 
-    private String DATA_VALUE;
+    private String dataValue;
+
+    @CreationTimestamp
+    private LocalDateTime regDt;
+
+    @UpdateTimestamp
+    private LocalDateTime updDt;
+
+    private Integer masterId;
+
 }
