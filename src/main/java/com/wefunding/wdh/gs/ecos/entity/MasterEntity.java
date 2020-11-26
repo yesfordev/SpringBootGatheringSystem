@@ -1,9 +1,11 @@
 package com.wefunding.wdh.gs.ecos.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * Created by yes on 2020/11/19
@@ -20,5 +22,13 @@ public class MasterEntity implements Serializable {
     private String statNameKr;
 
     private String statNameEn;
+
+    //0: 정상, 1: 오류, 2: 업데이트중
+    private int status;
+
+    private String cycle;
+
+    @UpdateTimestamp
+    private LocalDateTime recentUpdDt;
 
 }

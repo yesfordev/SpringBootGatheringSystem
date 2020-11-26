@@ -8,17 +8,21 @@ import com.wefunding.wdh.gs.ecos.dto.search.Row;
 import com.wefunding.wdh.gs.ecos.dto.search.SearchRes;
 import com.wefunding.wdh.gs.ecos.entity.DetailEntity;
 import com.wefunding.wdh.gs.ecos.entity.ItemListEntity;
+import com.wefunding.wdh.gs.ecos.entity.MasterEntity;
 import com.wefunding.wdh.gs.ecos.entity.SearchEntity;
 import com.wefunding.wdh.gs.ecos.repository.DetailEntityRepository;
 import com.wefunding.wdh.gs.ecos.repository.ItemListEntityRepository;
 import com.wefunding.wdh.gs.ecos.repository.MasterEntityRepository;
 import com.wefunding.wdh.gs.ecos.repository.SearchEntityRepository;
+import com.wefunding.wdh.gs.ecos.service.StatisticSearchService;
 import com.wefunding.wdh.gs.ecos.utils.EcosUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,8 +46,29 @@ public class StatisticSearchController {
 
     private final ItemListEntityRepository itemListEntityRepository;
 
+    @Autowired
+    StatisticSearchService statisticSearchService;
+
     @Value("${serviceKey}")
     private String serviceKey;
+
+
+    /**
+     * 특정 통계 조회[갱신]
+     */
+    @RequestMapping(value = "/stat/update/{masterId}")
+    public String updateSearch(@PathVariable("masterId") int masterId) throws IOException {
+
+        EcosUtils ecosUtils = new EcosUtils();
+
+        statisticSearchService.saveSearch(masterId);
+
+        String returnMsg = "";
+
+        return returnMsg;
+    }
+
+
 
     /**
      * 통계 조회 조건 설정 저장
