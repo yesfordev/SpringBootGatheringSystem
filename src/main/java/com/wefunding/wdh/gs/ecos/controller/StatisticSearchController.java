@@ -401,7 +401,6 @@ public class StatisticSearchController {
 
         System.out.println(statisticSearchService.mastertestInfo(masterId));
         System.out.println(statisticSearchService.mastertestInfo(masterId).get(0).getCycle());
-        System.out.println(statisticSearchService.mastertestInfo(masterId).getClass().getName());
         return "";
 
     }
