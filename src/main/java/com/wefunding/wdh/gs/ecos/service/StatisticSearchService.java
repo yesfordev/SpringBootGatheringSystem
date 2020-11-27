@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -339,6 +336,12 @@ public class StatisticSearchService {
         MasterEntity masterEntity = masterEntityRepository.findById(masterId);
         masterEntity.setStatus(status);
         masterEntityRepository.save(masterEntity);
+    }
+
+    public List<MasterEntity> mastertestInfo(int masterId){
+
+        List<MasterEntity> masterEntity = Collections.singletonList(masterEntityRepository.findById(masterId));
+        return masterEntity;
     }
 
 }

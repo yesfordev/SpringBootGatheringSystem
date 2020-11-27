@@ -395,4 +395,14 @@ public class StatisticSearchController {
         }
         return "test finished";
     }
+
+    @RequestMapping(value = "/test/{masterId}")
+    public String testmasterInfo(@PathVariable("masterId")int masterId){
+
+        System.out.println(statisticSearchService.mastertestInfo(masterId));
+        System.out.println(statisticSearchService.mastertestInfo(masterId).get(0).getCycle());
+        System.out.println(statisticSearchService.mastertestInfo(masterId).getClass().getName());
+        return "";
+
+    }
 }
