@@ -338,10 +338,4 @@ public class StatisticSearchService {
         masterEntityRepository.save(masterEntity);
     }
 
-    public List<MasterEntity> mastertestInfo(int masterId){
-
-        List<MasterEntity> masterEntity = Collections.singletonList(masterEntityRepository.findById(masterId));
-        return masterEntity;
-    }
-
 }

@@ -25,17 +25,4 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private ApiInfo apiInfo(String title, String version) {
-        return new ApiInfo(
-                title,
-                "Swagger로 생성한 API Docs",
-                version,
-                "www.example.com",
-                new Contact("Contact Me", "www.example.com", "foo@example.com"),
-                "Licenses",
-
-                "www.example.com",
-
-                new ArrayList<>());
-    }
 }

@@ -16,21 +16,18 @@ import com.wefunding.wdh.gs.ecos.repository.MasterEntityRepository;
 import com.wefunding.wdh.gs.ecos.repository.SearchEntityRepository;
 import com.wefunding.wdh.gs.ecos.service.StatisticSearchService;
 import com.wefunding.wdh.gs.ecos.utils.EcosUtils;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @RestController
@@ -75,6 +72,7 @@ public class StatisticSearchController {
      * @return save 완료 문구
      * @throws IOException
      */
+    @ApiOperation(value = "saveall", notes="9개 지표 data save")
     @GetMapping("/saveAll")
     public String saveSearch() throws IOException {
 
@@ -395,13 +393,25 @@ public class StatisticSearchController {
         }
         return "test finished";
     }
+    
+    @GetMapping("test")
+    public ResponseEntity<?> getTest(@RequestParam(value = "msg") int masterId) {
 
-    @RequestMapping(value = "/test/{masterId}")
-    public String testmasterInfo(@PathVariable("masterId")int masterId){
+        List<MasterEntity> masterEntity = Collections.singletonList(masterEntityRepository.findById(masterId));
 
-        System.out.println(statisticSearchService.mastertestInfo(masterId));
-        System.out.println(statisticSearchService.mastertestInfo(masterId).get(0).getCycle());
-        return "";
+        return new ResponseEntity<>(masterEntity.get(0).getId() + " / " + masterEntity.get(0).getStatus() + " / " + masterEntity.get(0).getRecentUpdDt() + " / " + masterEntity.get(0).getCycle(), HttpStatus.OK);
+    }
 
+    @GetMapping("test1")
+    public ResponseEntity<?> getTest1(@RequestParam(value = "msg") int masterId) {
+
+        List<DetailEntity> detailEntityList = detailEntityRepository.findAllByMasterId(masterId);
+        List<String> a = new ArrayList<>();
+        for(DetailEntity detailEntity : detailEntityList){
+            Optional<ItemListEntity> itemListEntityTemp = itemListEntityRepository.findById(detailEntity.getItemListId());
+            a.add(itemListEntityTemp.get().getItemCode());
+            a.add(itemListEntityTemp.get().getItemName());
+        }
+        return new ResponseEntity<>(a , HttpStatus.OK);
     }
 }
