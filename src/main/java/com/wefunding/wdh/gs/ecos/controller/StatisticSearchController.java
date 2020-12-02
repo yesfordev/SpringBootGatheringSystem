@@ -66,7 +66,6 @@ public class StatisticSearchController {
     }
 
 
-
     /**
      * 통계 조회 조건 설정 저장
      * @return save 완료 문구
@@ -393,25 +392,37 @@ public class StatisticSearchController {
         }
         return "test finished";
     }
-    
-    @GetMapping("test")
-    public ResponseEntity<?> getTest(@RequestParam(value = "msg") int masterId) {
 
-        List<MasterEntity> masterEntity = Collections.singletonList(masterEntityRepository.findById(masterId));
 
-        return new ResponseEntity<>(masterEntity.get(0).getId() + " / " + masterEntity.get(0).getStatus() + " / " + masterEntity.get(0).getRecentUpdDt() + " / " + masterEntity.get(0).getCycle(), HttpStatus.OK);
-    }
+//    @GetMapping("test")
+//    public ResponseEntity<?> getTest(@RequestParam(value = "msg") int masterId) {
+//
+//        List<MasterEntity> masterEntity = Collections.singletonList(masterEntityRepository.findById(masterId));
+//
+//        return new ResponseEntity<>(masterEntity.get(0).getId() + " / " + masterEntity.get(0).getStatus() + " / " + masterEntity.get(0).getRecentUpdDt() + " / " + masterEntity.get(0).getCycle(), HttpStatus.OK);
+//    }
+//
+//    @GetMapping("test1")
+//    public ResponseEntity<?> getTest1(@RequestParam(value = "msg") int masterId) {
+//
+//        List<DetailEntity> detailEntityList = detailEntityRepository.findAllByMasterId(masterId);
+//        List<String> a = new ArrayList<>();
+//        for(DetailEntity detailEntity : detailEntityList){
+//            Optional<ItemListEntity> itemListEntityTemp = itemListEntityRepository.findById(detailEntity.getItemListId());
+//            a.add(itemListEntityTemp.get().getItemCode());
+//            a.add(itemListEntityTemp.get().getItemName());
+//            System.out.println(itemListEntityTemp);
+//        }
+//
+//        return new ResponseEntity<>(a , HttpStatus.OK);
+//    }
 
-    @GetMapping("test1")
-    public ResponseEntity<?> getTest1(@RequestParam(value = "msg") int masterId) {
+//    @GetMapping("test2")
+//    public ResponseEntity<?> getTest2(@RequestParam(value = "msg") String testaaa) {
+//
+//        List<ItemListEntity> itemListEntityList = itemListEntityRepository.findnameaaa(testaaa);
+//        System.out.println(itemListEntityList);
+//        return new ResponseEntity<>(itemListEntityList , HttpStatus.OK);
+//    }
 
-        List<DetailEntity> detailEntityList = detailEntityRepository.findAllByMasterId(masterId);
-        List<String> a = new ArrayList<>();
-        for(DetailEntity detailEntity : detailEntityList){
-            Optional<ItemListEntity> itemListEntityTemp = itemListEntityRepository.findById(detailEntity.getItemListId());
-            a.add(itemListEntityTemp.get().getItemCode());
-            a.add(itemListEntityTemp.get().getItemName());
-        }
-        return new ResponseEntity<>(a , HttpStatus.OK);
-    }
 }

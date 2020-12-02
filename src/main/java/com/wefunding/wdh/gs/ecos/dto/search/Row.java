@@ -23,7 +23,7 @@ public class Row {
 
     private String UNIT_NAME;
 
-    private String TIME;
+    private Integer TIME;
 
     private String DATA_VALUE;
 }

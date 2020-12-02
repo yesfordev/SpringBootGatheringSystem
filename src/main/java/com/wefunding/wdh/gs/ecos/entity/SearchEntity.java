@@ -35,7 +35,7 @@ public class SearchEntity implements Serializable {
 
     private String unitName;
 
-    private String time;
+    private Integer time;
 
     private String dataValue;
 

@@ -3,6 +3,8 @@ package com.wefunding.wdh.gs.ecos.repository;
 import com.wefunding.wdh.gs.ecos.entity.DetailEntity;
 import com.wefunding.wdh.gs.ecos.entity.ItemListEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,4 +25,6 @@ public interface ItemListEntityRepository extends JpaRepository<ItemListEntity, 
 
 //    Optional<ItemListEntity> findById(Integer itemListId);
 
+    @Query(value = "select cast ((select time from ecos.statistic_search ss2 where time = :testaaa) as int)", nativeQuery = true)
+    List<ItemListEntity> findnameaaa(@Param("testaaa") String testaaa);
 }
