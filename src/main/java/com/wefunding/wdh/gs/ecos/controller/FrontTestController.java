@@ -5,14 +5,12 @@ import com.wefunding.wdh.gs.ecos.repository.SearchEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("front")
 @RequiredArgsConstructor
 public class FrontTestController {
@@ -34,8 +32,13 @@ public class FrontTestController {
 
     @GetMapping("/statisticSearch/area")
     public ResponseEntity<?> getStatisticSearchByArea(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemName1") String itemName1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
-        List<SearchEntity> searchEntityList = searchEntityRepository.findByArea(masterId,itemName1,startTime,endTime);
-        return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+        try {
+            List<SearchEntity> searchEntityList = searchEntityRepository.findByArea(masterId, itemName1, startTime, endTime);
+            return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/statisticSearch/two")
