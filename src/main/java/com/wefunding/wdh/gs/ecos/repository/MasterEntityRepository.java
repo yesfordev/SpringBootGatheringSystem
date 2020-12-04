@@ -17,4 +17,6 @@ public interface MasterEntityRepository extends JpaRepository<MasterEntity, Inte
     List<Integer> findIdAll();
 
     MasterEntity findById(int id);
+
+    //List<MasterEntity> findAllByMasterID(int id);
 }

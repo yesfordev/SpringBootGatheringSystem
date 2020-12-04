@@ -394,28 +394,19 @@ public class StatisticSearchController {
     }
 
 
-//    @GetMapping("test")
-//    public ResponseEntity<?> getTest(@RequestParam(value = "msg") int masterId) {
-//
-//        List<MasterEntity> masterEntity = Collections.singletonList(masterEntityRepository.findById(masterId));
-//
-//        return new ResponseEntity<>(masterEntity.get(0).getId() + " / " + masterEntity.get(0).getStatus() + " / " + masterEntity.get(0).getRecentUpdDt() + " / " + masterEntity.get(0).getCycle(), HttpStatus.OK);
-//    }
-//
-//    @GetMapping("test1")
-//    public ResponseEntity<?> getTest1(@RequestParam(value = "msg") int masterId) {
-//
-//        List<DetailEntity> detailEntityList = detailEntityRepository.findAllByMasterId(masterId);
-//        List<String> a = new ArrayList<>();
-//        for(DetailEntity detailEntity : detailEntityList){
-//            Optional<ItemListEntity> itemListEntityTemp = itemListEntityRepository.findById(detailEntity.getItemListId());
-//            a.add(itemListEntityTemp.get().getItemCode());
-//            a.add(itemListEntityTemp.get().getItemName());
-//            System.out.println(itemListEntityTemp);
-//        }
-//
-//        return new ResponseEntity<>(a , HttpStatus.OK);
-//    }
+
+
+    @GetMapping("test1")
+    public ResponseEntity<?> getTest1(@RequestParam(value = "msg") int masterId) {
+
+        List<DetailEntity> detailEntityList = detailEntityRepository.findAllByMasterId(masterId);
+        List<String> a = new ArrayList<>();
+        for(DetailEntity detailEntity : detailEntityList){
+            Optional<ItemListEntity> itemListEntityTemp = itemListEntityRepository.findById(detailEntity.getItemListId());
+            a.add(itemListEntityTemp.get().getItemCode());
+        }
+        return new ResponseEntity<>(a , HttpStatus.OK);
+    }
 
 //    @GetMapping("test2")
 //    public ResponseEntity<?> getTest2(@RequestParam(value = "msg") String testaaa) {

@@ -25,6 +25,4 @@ public interface ItemListEntityRepository extends JpaRepository<ItemListEntity, 
 
 //    Optional<ItemListEntity> findById(Integer itemListId);
 
-    @Query(value = "select cast ((select time from ecos.statistic_search ss2 where time = :testaaa) as int)", nativeQuery = true)
-    List<ItemListEntity> findnameaaa(@Param("testaaa") String testaaa);
 }

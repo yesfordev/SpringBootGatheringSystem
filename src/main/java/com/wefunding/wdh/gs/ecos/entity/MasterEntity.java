@@ -31,4 +31,8 @@ public class MasterEntity implements Serializable {
     @UpdateTimestamp
     private LocalDateTime recentUpdDt;
 
+    private Integer flag;
+
+    private String description;
+
 }
