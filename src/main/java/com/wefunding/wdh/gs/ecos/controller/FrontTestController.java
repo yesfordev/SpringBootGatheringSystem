@@ -32,6 +32,12 @@ public class FrontTestController {
         return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
     }
 
+    @GetMapping("/statisticSearch/area")
+    public ResponseEntity<?> getStatisticSearchByArea(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemName1") String itemName1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
+        List<SearchEntity> searchEntityList = searchEntityRepository.findByArea(masterId,itemName1,startTime,endTime);
+        return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+    }
+
     @GetMapping("/statisticSearch/two")
     public ResponseEntity<?> getTest2(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemCode1") String itemCode1, @RequestParam(value = "itemCode2") String itemCode2, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
         List<SearchEntity> searchEntityList = searchEntityRepository.findtest2(masterId,itemCode1,itemCode2,startTime,endTime);
