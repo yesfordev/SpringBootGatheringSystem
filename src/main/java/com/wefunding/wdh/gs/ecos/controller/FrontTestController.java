@@ -22,7 +22,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("fronttest")
+@CrossOrigin
+@RequestMapping("front")
 @RequiredArgsConstructor
 public class FrontTestController {
 
