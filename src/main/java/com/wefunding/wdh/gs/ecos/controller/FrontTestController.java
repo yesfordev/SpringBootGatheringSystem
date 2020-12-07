@@ -58,7 +58,7 @@ public class FrontTestController {
     }
 
     @GetMapping("/statisticSearch/one")
-    public ResponseEntity<?> getTest1(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemCode1") String itemCode1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
+    public ResponseEntity<?> getTest1(@RequestParam(value = "masterId")  int masterId, @RequestParam(value = "itemCode1") String itemCode1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
         List<SearchEntity> searchEntityList = searchEntityRepository.findtest1(masterId,itemCode1,startTime,endTime);
         return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
     }
@@ -86,6 +86,63 @@ public class FrontTestController {
         return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
     }
 
+    @GetMapping("/statisticSearch/requirement")
+    public ResponseEntity<?> getTest6(@RequestParam(value = "masterId") Optional<Integer> masterId, @RequestParam(value = "itemCode1") Optional<String> itemCode1, @RequestParam(value = "itemCode2") Optional<String> itemCode2, @RequestParam(value = "itemCode3") Optional<String> itemCode3, @RequestParam(value = "startTime") Optional<Integer> startTime, @RequestParam(value = "endTime") Optional<Integer> endTime) {
+
+        List<DetailEntity> detailEntityList = detailEntityRepository.test555(masterId);
+
+        if(detailEntityList.get(0).getFlag().equals(1)&masterId.isPresent()&startTime.isPresent()&endTime.isPresent())
+        {
+            if(itemCode1.isEmpty())
+            {
+                List<SearchEntity> searchEntityList = searchEntityRepository.findtest111(masterId,startTime,endTime);
+                return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+            }
+            else
+            {
+
+            }
+        }
+        else if(detailEntityList.get(0).getFlag().equals(1)&masterId.isPresent()&startTime.isPresent()&endTime.isPresent()&itemCode1.isEmpty()&itemCode2.isEmpty()&itemCode3.isEmpty())
+        {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+//        if (masterId.isPresent()) {
+//            if (startTime.isPresent()) {
+//                if (endTime.isPresent()) {
+//                    if (itemCode1.isPresent()) {
+//                        if (itemCode2.isPresent()) {
+//                            if (itemCode3.isPresent()) {
+//                                List<SearchEntity> searchEntityList = searchEntityRepository.findtest444(masterId, itemCode1, itemCode2, itemCode3, startTime, endTime);
+//                                return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+//                            } else {
+//                                List<SearchEntity> searchEntityList = searchEntityRepository.findtest333(masterId, itemCode1, itemCode2, startTime, endTime);
+//                                return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+//                            }
+//                        } else {
+//                            List<SearchEntity> searchEntityList = searchEntityRepository.findtest222(masterId, itemCode1, startTime, endTime);
+//                            return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+//                        }
+//                    } else {
+//                        List<SearchEntity> searchEntityList = searchEntityRepository.findtest111(masterId, startTime, endTime);
+//                        return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+//                    }
+//                } else {
+//                    System.out.println("종료날짜 입력");
+//                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//                }
+//            } else {
+//                System.out.println("시작 입력");
+//                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//            }
+//        } else {
+//            System.out.println("마스터 id 입력");
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
     /**
      *
      * @param masterId
@@ -106,11 +163,14 @@ public class FrontTestController {
                 cycle = itemListEntityTemp.get().getCycle();
                 area.add(itemListEntityTemp.get().getItemName());
             }
+
             JSONObject result = new JSONObject();
             String flag = "true";
             result.put("isArea",flag);
             result.put("cycle",cycle);
             result.put("area",area);
+            result.put("description",masterIdList.getDescription());
+            result.put("requirement",detailEntityList.get(0).getFlag());
             jsonArr_result.add(result);
         }
         else
@@ -125,6 +185,8 @@ public class FrontTestController {
             result.put("isArea",flag);
             result.put("cycle",cycle);
             result.put("area",area);
+            result.put("description",masterIdList.getDescription());
+            result.put("requirement",detailEntityList.get(0).getFlag());
             jsonArr_result.add(result);
         }
 
@@ -134,6 +196,7 @@ public class FrontTestController {
             JSONObject tempJson = (JSONObject) jsonArr_result.get(k);
             arrayJson.add(tempJson);
         }
+        System.out.println(jsonArr_result.size());
 
         JSONObject[] jsons = new JSONObject[arrayJson.size()];
         arrayJson.toArray(jsons);
