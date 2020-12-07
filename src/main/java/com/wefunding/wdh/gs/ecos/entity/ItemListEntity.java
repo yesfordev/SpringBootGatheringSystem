@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @Data
-@Table(name = "statistic_item_list_test", schema = "ecos")
+@Table(name = "statistic_item_list", schema = "ecos")
 public class ItemListEntity implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

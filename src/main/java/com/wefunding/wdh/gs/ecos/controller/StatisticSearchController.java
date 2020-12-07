@@ -393,21 +393,18 @@ public class StatisticSearchController {
         return "test finished";
     }
 
-
-
-
-    @GetMapping("test1")
-    public ResponseEntity<?> getTest1(@RequestParam(value = "msg") int masterId) {
-
-        List<DetailEntity> detailEntityList = detailEntityRepository.findAllByMasterId(masterId);
-        List<String> a = new ArrayList<>();
-        for(DetailEntity detailEntity : detailEntityList){
-            Optional<ItemListEntity> itemListEntityTemp = itemListEntityRepository.findById(detailEntity.getItemListId());
-            a.add(itemListEntityTemp.get().getItemCode());
-        }
-        return new ResponseEntity<>(a , HttpStatus.OK);
-    }
-
+//    @GetMapping("test1")
+//    public ResponseEntity<?> getTest1(@RequestParam(value = "msg") int masterId) {
+//
+//        List<DetailEntity> detailEntityList = detailEntityRepository.findAllByMasterId(masterId);
+//        List<String> a = new ArrayList<>();
+//        for(DetailEntity detailEntity : detailEntityList){
+//            Optional<ItemListEntity> itemListEntityTemp = itemListEntityRepository.findById(detailEntity.getItemListId());
+//            a.add(itemListEntityTemp.get().getItemCode());
+//        }
+//        return new ResponseEntity<>(a , HttpStatus.OK);
+//    }
+//
 //    @GetMapping("test2")
 //    public ResponseEntity<?> getTest2(@RequestParam(value = "msg") String testaaa) {
 //

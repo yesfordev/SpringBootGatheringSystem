@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table(name = "statistic_table_list_test", schema = "ecos")
+@Table(name = "statistic_table_list", schema = "ecos")
 public class TableListEntity implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

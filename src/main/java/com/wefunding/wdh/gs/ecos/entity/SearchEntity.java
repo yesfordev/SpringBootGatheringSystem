@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "statistic_search_test", schema = "ecos")
+@Table(name = "statistic_search", schema = "ecos")
 public class SearchEntity implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
