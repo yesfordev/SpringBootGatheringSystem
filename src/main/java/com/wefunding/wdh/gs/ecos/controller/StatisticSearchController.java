@@ -4,6 +4,7 @@ package com.wefunding.wdh.gs.ecos.controller;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
+import com.sun.mail.iap.Response;
 import com.wefunding.wdh.gs.ecos.dto.search.Row;
 import com.wefunding.wdh.gs.ecos.dto.search.SearchRes;
 import com.wefunding.wdh.gs.ecos.entity.DetailEntity;
@@ -55,15 +56,17 @@ public class StatisticSearchController {
      */
     @CrossOrigin
     @RequestMapping(value = "/stat/update/{masterId}")
-    public String updateSearch(@PathVariable("masterId") int masterId) throws IOException {
+    public ResponseEntity updateSearch(@PathVariable("masterId") int masterId) throws IOException {
 
         EcosUtils ecosUtils = new EcosUtils();
 
         statisticSearchService.saveSearch(masterId);
 
-        String returnMsg = "";
+        return new ResponseEntity(statisticSearchService.getUpdateInfo(masterId), HttpStatus.OK);
 
-        return returnMsg;
+//        String returnMsg = "";
+//
+//        return returnMsg;
     }
 
 

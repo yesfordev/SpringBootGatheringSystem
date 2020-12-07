@@ -338,4 +338,13 @@ public class StatisticSearchService {
         masterEntityRepository.save(masterEntity);
     }
 
+    public Object getUpdateInfo(int masterId) {
+        MasterEntity masterEntity = masterEntityRepository.findById(masterId);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("status", masterEntity.getStatus());
+        map.put("rec_dt", masterEntity.getRecentUpdDt());
+
+        return map;
+    }
 }
