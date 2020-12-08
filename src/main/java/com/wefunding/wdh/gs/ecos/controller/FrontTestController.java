@@ -85,7 +85,7 @@ public class FrontTestController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/statisticSearch/area/a")
+    @GetMapping("/statisticSearch/multipleArea")
     public ResponseEntity<?> getStatisticSearchByAreaMultiple(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemName1") Optional<List> itemName1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
         try {
             List<SearchEntity> searchEntityList = searchEntityRepository.findByAreaMultiple(masterId, itemName1, startTime, endTime);
