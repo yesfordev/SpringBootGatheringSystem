@@ -184,7 +184,7 @@ public class FrontTestController {
             }
 
             JSONObject result = new JSONObject();
-            String flag = "true";
+            Boolean flag = true;
             result.put("isArea",flag);
             result.put("cycle",cycle);
             result.put("area",area);
@@ -202,7 +202,7 @@ public class FrontTestController {
             cycle = itemListEntityTemp.get().getCycle();
 
             JSONObject result = new JSONObject();
-            String flag = "false";
+            Boolean flag = false;
             result.put("isArea",flag);
             result.put("cycle",cycle);
             result.put("area",area);
