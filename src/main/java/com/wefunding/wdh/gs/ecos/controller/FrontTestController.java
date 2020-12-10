@@ -163,6 +163,26 @@ public class FrontTestController {
     }
 
     /**
+     * masterId와 시간으로만 조회
+     * @param masterId
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    @GetMapping("/statisticSearch")
+    public ResponseEntity<?> getStatisticSearch(@RequestParam(value = "masterId") Optional<Integer> masterId, @RequestParam(value = "startTime") Optional<Integer> startTime, @RequestParam(value = "endTime") Optional<Integer> endTime) {
+        try {
+            if(masterId.isPresent() && startTime.isPresent() && endTime.isPresent()) {
+                List<SearchEntity> searchEntityList = searchEntityRepository.getSearchEntity(masterId, startTime, endTime);
+                return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    /**
      *
      * @param masterId
      * @return
@@ -185,6 +205,7 @@ public class FrontTestController {
 
             JSONObject result = new JSONObject();
             Boolean flag = true;
+            result.put("statName", masterIdList.getStatNameKr());
             result.put("isArea",flag);
             result.put("cycle",cycle);
             result.put("area",area);
@@ -203,6 +224,7 @@ public class FrontTestController {
 
             JSONObject result = new JSONObject();
             Boolean flag = false;
+            result.put("statName", masterIdList.getStatNameKr());
             result.put("isArea",flag);
             result.put("cycle",cycle);
             result.put("area",area);

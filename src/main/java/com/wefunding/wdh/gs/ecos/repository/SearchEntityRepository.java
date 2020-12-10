@@ -48,4 +48,6 @@ public interface SearchEntityRepository extends JpaRepository<SearchEntity, Inte
     @Query(value = "select * from ecos.statistic_search_test where master_id = :masterId and item_code1 = :itemCode1 and item_code2 = :itemCode2 and item_code3 = :itemCode3 and time >= :startTime and time <= :endTime", nativeQuery = true)
     List<SearchEntity> itemCode3Information(@Param("masterId") Optional<Integer> masterId, @Param("itemCode1") Optional<String> itemCode1, @Param("itemCode2") Optional<String> itemCode2, @Param("itemCode3") Optional<String> itemCode3, @Param("startTime") Optional<Integer> startTime, @Param("endTime") Optional<Integer> endTime);
 
+    @Query(value = "select * from ecos.statistic_search where master_id = :masterId and time >= :startTime and time <= :endTime", nativeQuery = true)
+    List<SearchEntity> getSearchEntity(@Param("masterId") Optional<Integer> masterId, @Param("startTime") Optional<Integer> startTime, @Param("endTime") Optional<Integer> endTime);
 }
