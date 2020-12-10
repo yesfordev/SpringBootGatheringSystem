@@ -85,16 +85,16 @@ public class FrontTestController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-//    @GetMapping("/statisticSearch/area")
-//    public ResponseEntity<?> getStatisticSearchByArea111(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemName1") Optional<List> itemName1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
-//        try {
-//            List<SearchEntity> searchEntityList = searchEntityRepository.findByArea111(masterId, itemName1, startTime, endTime);
-//            return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
+    @GetMapping("/statisticSearch/multipleArea")
+    public ResponseEntity<?> getStatisticSearchByAreaMultiple(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemName1") Optional<List> itemName1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
+        try {
+            List<SearchEntity> searchEntityList = searchEntityRepository.findByAreaMultiple(masterId, itemName1, startTime, endTime);
+            return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
     /**
      *
@@ -184,12 +184,14 @@ public class FrontTestController {
             }
 
             JSONObject result = new JSONObject();
-            String flag = "true";
+            Boolean flag = true;
             result.put("isArea",flag);
             result.put("cycle",cycle);
             result.put("area",area);
             result.put("description",masterIdList.getDescription());
             result.put("requirement",detailEntityList.get(0).getFlag());
+            result.put("status",masterIdList.getStatus());
+            result.put("rec_dt",masterIdList.getRecentUpdDt());
             jsonArr_result.add(result);
         }
         else
@@ -200,12 +202,14 @@ public class FrontTestController {
             cycle = itemListEntityTemp.get().getCycle();
 
             JSONObject result = new JSONObject();
-            String flag = "false";
+            Boolean flag = false;
             result.put("isArea",flag);
             result.put("cycle",cycle);
             result.put("area",area);
             result.put("description",masterIdList.getDescription());
             result.put("requirement",detailEntityList.get(0).getFlag());
+            result.put("status",masterIdList.getStatus());
+            result.put("rec_dt",masterIdList.getRecentUpdDt());
             jsonArr_result.add(result);
         }
 
