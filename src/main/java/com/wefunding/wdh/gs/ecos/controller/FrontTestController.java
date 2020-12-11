@@ -173,6 +173,10 @@ public class FrontTestController {
     public ResponseEntity<?> getStatisticSearch(@RequestParam(value = "masterId") Optional<Integer> masterId, @RequestParam(value = "startTime") Optional<Integer> startTime, @RequestParam(value = "endTime") Optional<Integer> endTime) {
         try {
             if(masterId.isPresent() && startTime.isPresent() && endTime.isPresent()) {
+                if(masterId.orElseThrow().equals(8)) {
+                    List<SearchEntity> searchEntityList = searchEntityRepository.getPopulationSearchEntity(masterId, startTime, endTime, "추계인구");
+                    return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
+                }
                 List<SearchEntity> searchEntityList = searchEntityRepository.getSearchEntity(masterId, startTime, endTime);
                 return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
             }
