@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/user")
 @Slf4j
+@CrossOrigin
 public class UserController {
 
     private final UserRepository userRepository;

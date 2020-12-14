@@ -54,7 +54,7 @@ public class StatisticSearchController {
     /**
      * 특정 통계 조회[갱신]
      */
-    @CrossOrigin
+    @CrossOrigin("*")
     @RequestMapping(value = "/stat/update/{masterId}")
     public ResponseEntity updateSearch(@PathVariable("masterId") int masterId) throws IOException {
 
