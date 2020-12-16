@@ -32,8 +32,6 @@ public class LoginController {
 
     @ApiOperation(value = "담당자로그인", notes = "아이디(이메일), 패스워드로 로그인")
     @PostMapping(value = "/login")
-//    public SingleResult<String> login(@ApiParam(value = "ID(이메일)", required = true) @RequestParam String id,
-//                                       @ApiParam(value = "비밀번호", required = true) @RequestParam String password) {
     public SingleResult<String> login(@RequestBody LoginReq loginReq) {
 
         log.info("[API CALL] - 로그인");
@@ -47,9 +45,6 @@ public class LoginController {
 
     @ApiOperation(value = "담당자가입 및 등록", notes = "GS 회원가입")
     @PostMapping(value = "/register")
-//    public CommonResult register(@ApiParam(value = "ID(이메일)", required = true) @RequestParam String userEmail,
-//                               @ApiParam(value = "비밀번호", required = true) @RequestParam String password,
-//                               @ApiParam(value = "담당자이름", required = true) @RequestParam String name) {
     public CommonResult register(@RequestBody RegisterReq registerReq) {
 
         log.info("[API CALL] - 가입");

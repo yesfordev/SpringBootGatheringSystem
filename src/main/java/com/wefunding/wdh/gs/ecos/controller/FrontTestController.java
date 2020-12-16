@@ -8,6 +8,7 @@ import com.wefunding.wdh.gs.ecos.repository.DetailEntityRepository;
 import com.wefunding.wdh.gs.ecos.repository.ItemListEntityRepository;
 import com.wefunding.wdh.gs.ecos.repository.MasterEntityRepository;
 import com.wefunding.wdh.gs.ecos.repository.SearchEntityRepository;
+import com.wefunding.wdh.gs.ecos.service.FrontTestService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
@@ -33,6 +34,8 @@ public class FrontTestController {
     private final DetailEntityRepository detailEntityRepository;
 
     private final ItemListEntityRepository itemListEntityRepository;
+
+    private final FrontTestService frontTestService;
 //
 //    @GetMapping("")
 //    public ResponseEntity getTest(@PathVariable(value = "masterId") int masterId){
@@ -86,14 +89,24 @@ public class FrontTestController {
     }
 
     @GetMapping("/statisticSearch/multipleArea")
-    public ResponseEntity<?> getStatisticSearchByAreaMultiple(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemName1") Optional<List> itemName1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
+    public ResponseEntity<?> getStatisticSearchByAreaMultiple(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemName1") Optional<List<String>> itemName1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
         try {
             List<SearchEntity> searchEntityList = searchEntityRepository.findByAreaMultiple(masterId, itemName1, startTime, endTime);
             return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/statisticSearch/chart/multipleArea")
+    public ResponseEntity<?> getStatisticSearchChartByAreaMultiple(@RequestParam(value = "cycle") String cycle, @RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemName1") Optional<List<String>> itemName1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
+        try {
+            return new ResponseEntity<>(frontTestService.getStatisticSearchChart(cycle, masterId, itemName1, startTime, endTime), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**

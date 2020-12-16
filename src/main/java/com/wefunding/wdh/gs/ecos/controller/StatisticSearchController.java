@@ -75,7 +75,7 @@ public class StatisticSearchController {
      * @return save 완료 문구
      * @throws IOException
      */
-    @ApiOperation(value = "saveall", notes="9개 지표 data save")
+    @ApiOperation(value = "saveall", notes="9개 지표 ChartData save")
     @GetMapping("/saveAll")
     public String saveSearch() throws IOException {
 

@@ -49,8 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .authorizeRequests()
-//                        .antMatchers("/*/login", "/*/login/**", "/*/register", "/*/register/**", "/front/**", "/search/**").permitAll()
-                        .antMatchers("/*/login", "/*/login/**", "/*/register", "/*/register/**").permitAll()
+                        .antMatchers("/*/login", "/*/login/**", "/*/register", "/*/register/**", "/front/**", "/search/**").permitAll()
+//                        .antMatchers("/*/login", "/*/login/**", "/*/register", "/*/register/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/exception/**").permitAll()
                         .anyRequest().hasRole("USER") // 롤 고민 필요
                 .and()

@@ -25,21 +25,10 @@ public class AuthenticationFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         String token = tokenProvider.resolveToken((HttpServletRequest) request);
 
-        System.out.println(token);
-
-        //추가
-//        HttpServletResponse res = (HttpServletResponse) response;
-        //
         if (token != null && tokenProvider.validateToken(token)) {
             Authentication auth = tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(auth);
-            // 추가
-//            res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-//            res.setHeader("Access-Control-Max-Age", "3600");
-//            res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-//            res.setHeader("Access-Control-Allow-Credentials", "true");
         }
         filterChain.doFilter(request, response);
-//        filterChain.doFilter(request, res);
     }
 }
