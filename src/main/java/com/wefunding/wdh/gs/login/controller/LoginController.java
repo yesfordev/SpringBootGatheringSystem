@@ -9,8 +9,8 @@ import com.wefunding.wdh.gs.login.model.RegisterReq;
 import com.wefunding.wdh.gs.login.model.SingleResult;
 import com.wefunding.wdh.gs.login.repository.UserRepository;
 import com.wefunding.wdh.gs.login.service.ResponseService;
+import com.wefunding.wdh.gs.login.utils.PasswordEncoding;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,11 +33,13 @@ public class LoginController {
     @ApiOperation(value = "담당자로그인", notes = "아이디(이메일), 패스워드로 로그인")
     @PostMapping(value = "/login")
     public SingleResult<String> login(@RequestBody LoginReq loginReq) {
+        PasswordEncoding passwordEncoding = new PasswordEncoding();
 
         log.info("[API CALL] - 로그인");
 
         User user = userRepository.findByUserEmail(loginReq.getId()).orElseThrow(CEmailLoginFailedException::new);
-        if (!passwordEncoder.matches(loginReq.getPassword(), user.getPassword()))
+//        if (!passwordEncoder.matches(loginReq.getPassword(), user.getPassword()))
+        if(!passwordEncoding.matches(loginReq.getPassword(), user.getPassword()))
             throw new CEmailLoginFailedException();
 
         return responseService.getSingleResult(tokenProvider.createToken(String.valueOf(user.getUserId()), user.getRoles()));
@@ -46,12 +48,14 @@ public class LoginController {
     @ApiOperation(value = "담당자가입 및 등록", notes = "GS 회원가입")
     @PostMapping(value = "/register")
     public CommonResult register(@RequestBody RegisterReq registerReq) {
+        PasswordEncoding passwordEncoding = new PasswordEncoding();
 
         log.info("[API CALL] - 가입");
 
         userRepository.save(User.builder()
                 .userEmail(registerReq.getUserEmail())
-                .password(passwordEncoder.encode(registerReq.getPassword()))
+//                .password(passwordEncoder.encode(registerReq.getPassword()))
+                .password(passwordEncoding.encode(registerReq.getPassword()))
                 .name(registerReq.getName())
                 .roles(Collections.singletonList("ROLE_USER")) //향후 롤을 어떻게 관리할지 고민 필요
                 .build());
