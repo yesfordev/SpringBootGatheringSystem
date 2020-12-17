@@ -57,4 +57,8 @@ public interface SearchEntityRepository extends JpaRepository<SearchEntity, Inte
 
     @Query(value = "select * from ecos.statistic_search where master_id = :masterId and time >= :startTime and time <= :endTime and item_name1 = :item_name", nativeQuery = true)
     List<SearchEntity> getPopulationSearchEntity(@Param("masterId") Optional<Integer> masterId, @Param("startTime") Optional<Integer> startTime, @Param("endTime") Optional<Integer> endTime, String item_name);
+
+    @Query(value = "select * from ecos.statistic_search where master_id = :masterId and item_name1 in (:itemName1) and time >= :startTime and time <= :endTime order by item_name1, time;", nativeQuery = true)
+    List<SearchEntity> findByAreaMultipleCSV(@Param("masterId") Optional<Integer> masterId, @Param("itemName1") Optional<List<String>> itemName1, @Param("startTime") Optional<Integer> startTime, @Param("endTime") Optional<Integer> endTime);
+
 }

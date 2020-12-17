@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,29 +26,22 @@ public class SearchDataController {
     SearchDataService searchDataService;
 
     @GetMapping("/export-csv")
-    public ResponseEntity exportCSV(HttpServletResponse response, @RequestParam(value = "masterId") Optional<Integer> masterId, @RequestParam(value = "itemCode1") Optional<String> itemCode1, @RequestParam(value = "itemCode2") Optional<String> itemCode2, @RequestParam(value = "itemCode3") Optional<String> itemCode3, @RequestParam(value = "startTime") Optional<Integer> startTime, @RequestParam(value = "endTime") Optional<Integer> endTime) throws UnsupportedEncodingException {
-
+    public ResponseEntity exportCSV(HttpServletResponse response, @RequestParam(value = "masterId") Optional<Integer> masterId, @RequestParam(value = "itemName1") Optional<List<String>> itemName1, @RequestParam(value = "startTime") Optional<Integer> startTime, @RequestParam(value = "endTime") Optional<Integer> endTime) throws UnsupportedEncodingException {
+//, @RequestParam(value = "itemCode2") Optional<String> itemCode2, @RequestParam(value = "itemCode3") Optional<String> itemCode3,
         String filename = "SearchData.csv";
         response.setContentType("text/csv");
         String headerKey = "Content-Disposition";
         String headerValue = String.format("attachment; filename=\"%s\"", filename);
         response.setHeader(headerKey, headerValue);
 
-        if(itemCode1.isEmpty()&itemCode2.isEmpty()&itemCode3.isEmpty())
-        {
-            return new ResponseEntity(searchDataService.searchTableSaveDataCSV(masterId, startTime, endTime).getBytes("CP949"), HttpStatus.OK);
-        }
-        else if(itemCode1.isPresent()&itemCode2.isEmpty()&itemCode3.isEmpty())
-        {
-            return new ResponseEntity(searchDataService.itemCode1SaveDataCSV(masterId, itemCode1, startTime, endTime).getBytes("CP949"), HttpStatus.OK);
-        }
-        else if(itemCode1.isPresent()&itemCode2.isPresent()&itemCode3.isEmpty())
-        {
-            return new ResponseEntity(searchDataService.itemCode2SaveDataCSV(masterId, itemCode1, itemCode2, startTime, endTime).getBytes("CP949"), HttpStatus.OK);
-        }
-        else if(itemCode1.isPresent()&itemCode2.isPresent()&itemCode3.isPresent())
-        {
-            return new ResponseEntity(searchDataService.itemCode3SaveDataCSV(masterId, itemCode1, itemCode2, itemCode3, startTime, endTime).getBytes("CP949"), HttpStatus.OK);
+        try {
+            if (itemName1.isEmpty()) {
+                return new ResponseEntity(searchDataService.searchTableDataCSV(masterId, startTime, endTime).getBytes("CP949"), HttpStatus.OK);
+            } else if (itemName1.isPresent()) {
+                return new ResponseEntity(searchDataService.multiAreaDataCSV(masterId, itemName1, startTime, endTime).getBytes("CP949"), HttpStatus.OK);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
