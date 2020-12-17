@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collections;
 
 @RequiredArgsConstructor //초기화 되지 않은 객체에 대한 생성자를 생성해주는 역할, @Autowired 없이도 의존성(Dependency Injection) 주입 가능
@@ -32,7 +33,7 @@ public class LoginController {
 
     @ApiOperation(value = "담당자로그인", notes = "아이디(이메일), 패스워드로 로그인")
     @PostMapping(value = "/login")
-    public SingleResult<String> login(@RequestBody LoginReq loginReq) {
+    public SingleResult<String> login(@Valid @RequestBody LoginReq loginReq) {
         PasswordEncoding passwordEncoding = new PasswordEncoding();
 
         log.info("[API CALL] - 로그인");
@@ -47,7 +48,7 @@ public class LoginController {
 
     @ApiOperation(value = "담당자가입 및 등록", notes = "GS 회원가입")
     @PostMapping(value = "/register")
-    public CommonResult register(@RequestBody RegisterReq registerReq) {
+    public CommonResult register(@Valid @RequestBody RegisterReq registerReq) {
         PasswordEncoding passwordEncoding = new PasswordEncoding();
 
         log.info("[API CALL] - 가입");
