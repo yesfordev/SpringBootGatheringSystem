@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +39,7 @@ public class SearchDataService {
             result.put("DataValue", searchEntity.getDataValue());
             jsonArr_result.put(result);
         }
+
         String csv = CDL.toString(jsonArr_result);
         return csv;
     }
