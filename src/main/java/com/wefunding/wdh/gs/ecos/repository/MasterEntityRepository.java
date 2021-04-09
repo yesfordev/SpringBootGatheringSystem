@@ -23,5 +23,4 @@ public interface MasterEntityRepository extends JpaRepository<MasterEntity, Inte
     @Query(value = "select * from ecos.master m where master_id = :masterId", nativeQuery = true)
     List<MasterEntity> findByMasterId_MasterTable(@Param("masterId")Optional <Integer> masterId);
 
-    //List<MasterEntity> findAllByMasterID(int id);
 }

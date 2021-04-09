@@ -58,8 +58,6 @@ public class StatisticTableListController {
 
         JSONObject resObject = ecosUtils.connectUrlReturnObject(urlstr);
 
-//        LOGGER.info("RETURN ORIGIN" + resObject);
-
         ObjectMapper mapper = new ObjectMapper();
 
         //objectMapper가 json->vo로 변환시 대소문자 구분 가능하게 해주는 설정
@@ -95,8 +93,6 @@ public class StatisticTableListController {
 
         JSONObject resObject = ecosUtils.connectUrlReturnObject(urlstr);
 
-//        LOGGER.info("RETURN ORIGIN" + resObject);
-
         ObjectMapper mapper = new ObjectMapper();
 
         //objectMapper가 json->vo로 변환시 대소문자 구분 가능하게 해주는 설정
@@ -118,23 +114,10 @@ public class StatisticTableListController {
                 tableListEntityTemp.setStatName(row.getSTAT_NAME());
 
                 tableListEntityList.add(tableListEntityTemp);
-//                tableListEntityRepository.save(table)
             }
 
             tableListEntityRepository.saveAll(tableListEntityList);
 
-//            int i = 1;
-//
-//            for(Row row : rowList) {
-//                LOGGER.info(i+"번째 row");
-//                LOGGER.info("P_STAT_CODE: "+ row.getP_STAT_CODE());
-//                LOGGER.info("CYCLE: "+row.getCYCLE());
-//                LOGGER.info("ORG_NAME: "+row.getORG_NAME());
-//                LOGGER.info("SRCH_YN: "+row.getSRCH_YN());
-//                LOGGER.info("STAT_CODE: "+row.getSTAT_CODE());
-//                LOGGER.info("STAT_NAME: "+row.getSTAT_NAME());
-//                i++;
-//            }
         } catch (UnrecognizedPropertyException e) {
             String resString = resObject.toString();
 
@@ -147,10 +130,6 @@ public class StatisticTableListController {
                 return "서버 에러로 인하여 종료되었습니다.";
             }
         }
-//        LOGGER.info("list_total_count: " + tableRes.getStatisticTableList().getList_total_count());
-//        LOGGER.info("총 아이탬 갯수: " + tableRes.getStatisticTableList().getRow().size());
-
-
         return "save complete";
     }
 }

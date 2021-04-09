@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TableListEntityRepository extends JpaRepository<TableListEntity, Integer> {
+
 }

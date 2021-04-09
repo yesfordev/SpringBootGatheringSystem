@@ -13,7 +13,6 @@ import java.util.Optional;
 public interface DetailEntityRepository extends JpaRepository<DetailEntity, Integer> {
 
     List<DetailEntity> findAllByMasterId(Integer masterId);
-//    List<DetailEntity> findAllByMasterId111(Optional<Integer> masterId);
 
     @Query(value = "select * from ecos.detail d where master_id = :masterId", nativeQuery = true)
     List<DetailEntity> test555(@Param("masterId") Optional<Integer> masterId);

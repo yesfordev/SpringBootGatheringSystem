@@ -63,10 +63,6 @@ public class StatisticSearchController {
         statisticSearchService.saveSearch(masterId);
 
         return new ResponseEntity(statisticSearchService.getUpdateInfo(masterId), HttpStatus.OK);
-
-//        String returnMsg = "";
-//
-//        return returnMsg;
     }
 
 
@@ -83,17 +79,11 @@ public class StatisticSearchController {
 
         List<Integer> masterIdList = masterEntityRepository.findIdAll();
 
-//        log.info("masterIdList: "+masterIdList);
-
         for (Integer masterId : masterIdList) {
 
             List<DetailEntity> detailEntityList = detailEntityRepository.findAllByMasterId(masterId);
 
             String flag = detailEntityList.get(0).getFlag();
-
-//            List<String> itemCodeList = itemListEntityRepository.findItemCodeById(detailEntityList.get(0).getItemListId());
-
-//            log.info(String.valueOf(itemCodeList));
 
             if (flag.equals("1")) {
                 for (DetailEntity detailEntityTemp : detailEntityList) {
@@ -117,8 +107,6 @@ public class StatisticSearchController {
 
                         JSONObject resObject = ecosUtils.connectUrlReturnObject(urlstr);
 
-//                            log.info("RETURN ORIGIN" + resObject);
-
                         ObjectMapper mapper = new ObjectMapper();
 
                         //objectMapper가 json->vo로 변환시 대소문자 구분 가능하게 해주는 설정
@@ -132,7 +120,6 @@ public class StatisticSearchController {
                             List<SearchEntity> searchEntityList = new ArrayList<>();
 
                             for (Row row : rowList) {
-//                                    ItemListEntity itemListEntityTemp = new ItemListEntity();
                                 SearchEntity searchEntityTemp = new SearchEntity();
 
                                 searchEntityTemp.setStatCode(row.getSTAT_CODE());
@@ -153,10 +140,6 @@ public class StatisticSearchController {
                             }
 
                             searchEntityRepository.saveAll(searchEntityList);
-
-//                log.info("id: " + detailEntityTemp.getId());
-//                log.info("list_total_count: " + searchRes.getStatisticSearch().getList_total_count());
-//                log.info("총 아이템: " + searchRes.getStatisticSearch().getRow());
                         } catch (UnrecognizedPropertyException e) {
                             String resString = resObject.toString();
 
@@ -235,7 +218,6 @@ public class StatisticSearchController {
                         List<SearchEntity> searchEntityList = new ArrayList<>();
 
                         for (Row row : rowList) {
-//                                    ItemListEntity itemListEntityTemp = new ItemListEntity();
                             SearchEntity searchEntityTemp = new SearchEntity();
 
                             searchEntityTemp.setStatCode(row.getSTAT_CODE());
@@ -256,10 +238,6 @@ public class StatisticSearchController {
                         }
 
                         searchEntityRepository.saveAll(searchEntityList);
-
-//                log.info("id: " + detailEntityTemp.getId());
-//                log.info("list_total_count: " + searchRes.getStatisticSearch().getList_total_count());
-//                log.info("총 아이템: " + searchRes.getStatisticSearch().getRow());
                     } catch (UnrecognizedPropertyException e) {
                         String resString = resObject.toString();
 
@@ -341,7 +319,6 @@ public class StatisticSearchController {
                         List<SearchEntity> searchEntityList = new ArrayList<>();
 
                         for (Row row : rowList) {
-//                                    ItemListEntity itemListEntityTemp = new ItemListEntity();
                             SearchEntity searchEntityTemp = new SearchEntity();
 
                             searchEntityTemp.setStatCode(row.getSTAT_CODE());
@@ -363,9 +340,6 @@ public class StatisticSearchController {
 
                         searchEntityRepository.saveAll(searchEntityList);
 
-//                log.info("id: " + detailEntityTemp.getId());
-//                log.info("list_total_count: " + searchRes.getStatisticSearch().getList_total_count());
-//                log.info("총 아이템: " + searchRes.getStatisticSearch().getRow());
                     } catch (UnrecognizedPropertyException e) {
                         String resString = resObject.toString();
 
@@ -396,25 +370,4 @@ public class StatisticSearchController {
         }
         return "test finished";
     }
-
-//    @GetMapping("test1")
-//    public ResponseEntity<?> getTest1(@RequestParam(value = "msg") int masterId) {
-//
-//        List<DetailEntity> detailEntityList = detailEntityRepository.findAllByMasterId(masterId);
-//        List<String> a = new ArrayList<>();
-//        for(DetailEntity detailEntity : detailEntityList){
-//            Optional<ItemListEntity> itemListEntityTemp = itemListEntityRepository.findById(detailEntity.getItemListId());
-//            a.add(itemListEntityTemp.get().getItemCode());
-//        }
-//        return new ResponseEntity<>(a , HttpStatus.OK);
-//    }
-//
-//    @GetMapping("test2")
-//    public ResponseEntity<?> getTest2(@RequestParam(value = "msg") String testaaa) {
-//
-//        List<ItemListEntity> itemListEntityList = itemListEntityRepository.findnameaaa(testaaa);
-//        System.out.println(itemListEntityList);
-//        return new ResponseEntity<>(itemListEntityList , HttpStatus.OK);
-//    }
-
 }

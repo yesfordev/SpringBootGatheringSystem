@@ -64,9 +64,6 @@ public class TokenProvider {
 
     public String getUser(String token) {
         log.info("getUser");
-        //byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secretKey);
-        //SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        //Key KEY = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
         return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody().getSubject();
     }
 

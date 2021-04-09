@@ -36,46 +36,6 @@ public class FrontTestController {
     private final ItemListEntityRepository itemListEntityRepository;
 
     private final FrontTestService frontTestService;
-//
-//    @GetMapping("")
-//    public ResponseEntity getTest(@PathVariable(value = "masterId") int masterId){
-//        try{
-//            List<SearchEntity> searchEntityList = searchEntityRepository.finditemcode(masterId);
-//            return new ResponseEntity(searchEntityList, HttpStatus.OK);
-//        } catch (Exception e){
-//            return new ResponseEntity(HttpStatus.NOT_FOUND);
-//        }
-//    }
-//
-//    @GetMapping("test/{startTime}/{endTime}")
-//    public ResponseEntity getTest(@PathVariable(value = "masterId") int masterId, @PathVariable(value = "startTime") int startTime, @PathVariable(value = "endTime") int endTime) {
-//        List<SearchEntity> searchEntityList = searchEntityRepository.findtest(masterId,startTime,endTime);
-//        return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/statisticSearch")
-//    public ResponseEntity<?> getTest(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
-//        List<SearchEntity> searchEntityList = searchEntityRepository.findtest(masterId,startTime,endTime);
-//        return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/statisticSearch/one")
-//    public ResponseEntity<?> getTest1(@RequestParam(value = "masterId")  int masterId, @RequestParam(value = "itemCode1") String itemCode1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
-//        List<SearchEntity> searchEntityList = searchEntityRepository.findtest1(masterId,itemCode1,startTime,endTime);
-//        return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/statisticSearch/two")
-//    public ResponseEntity<?> getTest2(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemCode1") String itemCode1, @RequestParam(value = "itemCode2") String itemCode2, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
-//        List<SearchEntity> searchEntityList = searchEntityRepository.findtest2(masterId,itemCode1,itemCode2,startTime,endTime);
-//        return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/statisticSearch/three")
-//    public ResponseEntity<?> getTest3(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemCode1") String itemCode1, @RequestParam(value = "itemCode2") String itemCode2, @RequestParam(value = "itemCode3") String itemCode3, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {
-//        List<SearchEntity> searchEntityList = searchEntityRepository.findtest3(masterId,itemCode1,itemCode2,itemCode3,startTime,endTime);
-//        return new ResponseEntity<>(searchEntityList, HttpStatus.OK);
-//    }
 
     @GetMapping("/statisticSearch/area")
     public ResponseEntity<?> getStatisticSearchByArea(@RequestParam(value = "masterId") int masterId, @RequestParam(value = "itemName1") String itemName1, @RequestParam(value = "startTime") int startTime, @RequestParam(value = "endTime") int endTime) {

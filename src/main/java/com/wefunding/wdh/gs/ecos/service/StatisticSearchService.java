@@ -306,10 +306,6 @@ public class StatisticSearchService {
 
             searchEntityRepository.saveAll(searchEntityList);
 
-//                log.info("id: " + detailEntityTemp.getId());
-//                log.info("list_total_count: " + searchRes.getStatisticSearch().getList_total_count());
-//                log.info("총 아이템: " + searchRes.getStatisticSearch().getRow());
-
         } catch (Exception e) {
 
             statusUpdate(1, masterId);

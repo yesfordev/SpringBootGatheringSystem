@@ -62,8 +62,6 @@ public class StatisticItemListController {
 
             JSONObject resObject = ecosUtils.connectUrlReturnObject(urlstr);
 
-//            LOGGER.info("RETURN ORIGIN" + resObject);
-
             ObjectMapper mapper = new ObjectMapper();
 
             //objectMapper가 json->vo로 변환시 대소문자 구분 가능하게 해주는 설정
@@ -113,8 +111,6 @@ public class StatisticItemListController {
 
             JSONObject resObject = ecosUtils.connectUrlReturnObject(urlstr);
 
-//            LOGGER.info("RETURN ORIGIN" + resObject);
-
             ObjectMapper mapper = new ObjectMapper();
 
             //objectMapper가 json->vo로 변환시 대소문자 구분 가능하게 해주는 설정
@@ -148,9 +144,6 @@ public class StatisticItemListController {
                 itemListEntityRepository.saveAll(itemListEntityList);
                 LOGGER.info("id: " + tableListEntity.getId() + " 저장 완료");
 
-//                LOGGER.info("id: " + tableListEntity.getId());
-//                LOGGER.info("list_total_count: " + itemRes.getStatisticItemList().getList_total_count());
-//                LOGGER.info("총 아이템 갯수: " + itemRes.getStatisticItemList().getRow().size());
             } catch (UnrecognizedPropertyException e) {
                 String resString = resObject.toString();
 
