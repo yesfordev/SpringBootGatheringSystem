@@ -1,4 +1,4 @@
-### 💻금융(한국은행) 데이터 시각화 웹 Server
+# 💻금융(한국은행) 데이터 시각화 웹 Server
 
 `해당 프로젝트는 인턴십 완료 후, 코드 공개 및 포트폴리오 사용에 대한 회사의 허락을 받았습니다.`
 
@@ -56,5 +56,11 @@
 ![image](https://user-images.githubusercontent.com/31542907/114298836-4036dd80-9af3-11eb-84ba-deccaa532f46.png)
 </br>
 
+### 배포
+
+- AWS EC2 - 애플리케이션 서버
+- AWS RDS - DB 서버
+
+</br>
 ### 🎥시연 영상
 - [영상 보기](https://drive.google.com/file/d/1VWlOacV6I20sT_pwZulMv4orVeQYXdVY/view?usp=sharing)
