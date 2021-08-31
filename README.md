@@ -61,6 +61,6 @@
 - AWS EC2 - 애플리케이션 서버
 - AWS RDS - DB 서버
 
-</br>
+
 ### 🎥시연 영상
 - [영상 보기](https://drive.google.com/file/d/1VWlOacV6I20sT_pwZulMv4orVeQYXdVY/view?usp=sharing)
